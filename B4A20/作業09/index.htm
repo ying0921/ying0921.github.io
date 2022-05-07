@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+		<title>課堂作業09</title>
+	<style>
+		h4 {
+			color: red;
+		}
+
+		label {
+            color: blue;
+        }
+
+        input {
+            color: brown;
+        }
+        div {
+            color: blue;
+            margin: 5px;
+        }
+
+        table{
+		    border-collapse: collapse;
+		}
+		td:nth-child(1){
+		    color: brown;
+		    border-style: solid;
+		    border-color:black;
+		}
+		td:nth-child(2){
+		    color: blue;
+		    border-style: solid;
+		    border-color:black;
+		}
+	</style>
+</head>
+
+<body>
+<form id="form01">
+	<label>姓名: </label>
+	<input type="text" name="name01" value="黃湘盈"><br>
+	<label>收件住址: </label>
+	<input type="text" name="address01" value="新北市蘆洲區集賢路224巷15號9樓"><br>
+	<label>電話: </label>
+	<input type="tel" name="tel01" value="0970605802"><br>
+	<label>電子郵件: </label>
+	<input type="email" name="email01" value="melody2684@gmail.com"><br>
+	<label>指定送貨日期: </label>
+	<input type="date" name="date01"><br>
+	<label>牛排種類: (四選一)</label><br>
+	<input type="radio" name="steak" id="steak01" value="菲力(10盎司)">菲力(10盎司) 300元<br>
+	<input type="radio" name="steak" id="steak02" value="沙朗(10盎司)">沙朗(10盎司) 250元<br>
+	<input type="radio" name="steak" id="steak03" value="肋眼(10盎司)">肋眼(10盎司) 350元<br>
+	<input type="radio" name="steak" id="steak04" value="牛小排(10盎司)">牛小排(10盎司) 400元<br>
+
+</form>
+<br>
+<button onclick="shoppingInfo()"> <h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+    function shoppingInfo(){
+        const x = document.getElementById("form01");
+        var item = "";
+        var price = 0;
+        let head = document.createElement('h4');
+        head.innerHTML = "您的購物資訊如下:";
+        document.getElementById("demo").appendChild(head);
+        let text="";
+        var i;
+        let table = document.createElement('table');
+        for (i = 0; i < 5; i++) {
+             let aRow = document.createElement('tr');
+             let td1 = document.createElement('td');
+             let td2 = document.createElement('td');
+            switch (i) {
+                case 0:
+                    item = "姓名: ";
+                    break;
+                case 1:
+                    item = "收件住址: ";
+                    break;
+                case 2:
+                    item = "電話: ";
+                    break;
+                case 3:
+                    item = "電子郵件: ";
+                    break;
+                case 4:
+                    item = "指定送貨日期: ";
+                    break;
+            }
+            td1.innerText=item;
+            td2.innerText=x.elements[i].value;
+            aRow.appendChild(td1);
+            aRow.appendChild(td2);
+            table.appendChild(aRow);
+        }
+        for (i = 5; i <= 8; i++) {
+            if (x.elements[i].checked == true) {
+                switch (i) {
+                    case 5:
+                        price = 300;
+                        break;
+                    case 6:
+                        price = 250;
+                        break;
+                    case 7:
+                        price = 350;
+                        break;
+                    case 8:
+                        price = 400;
+                        break;
+    }
+        let aRow = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        td1.innerText="牛排種類:";
+        td2.innerText=x.elements[i].value;
+        aRow.appendChild(td1);
+        aRow.appendChild(td2);
+        table.appendChild(aRow);
+        aRow = document.createElement('tr');
+        td1 = document.createElement('td');
+        td2 = document.createElement('td');
+        td1.innerText="價格合計:";
+        td2.innerText=price + "元";
+        aRow.appendChild(td1);
+        aRow.appendChild(td2);
+        table.appendChild(aRow);
+        const body =document.body;
+        document.getElementById("demo").appendChild(table);
+    }
+}
+document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML+text;
+}
+
+</script>
+
+</body>
+
+</html>
